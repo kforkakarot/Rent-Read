@@ -7,14 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-public class Role {
 
-    @Id
-    private String roleName;
-    private String roleDescription;
+public enum Role {
+
+        USER, ADMIN
 }
