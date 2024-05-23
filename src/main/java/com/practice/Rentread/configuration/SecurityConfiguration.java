@@ -24,6 +24,8 @@ import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import java.util.List;
+
 
 @Configuration
 @EnableWebSecurity
@@ -40,8 +42,22 @@ public class SecurityConfiguration{
         http.csrf(AbstractHttpConfigurer::disable)
             .authorizeHttpRequests(request -> request.requestMatchers("/api/v1/auth/**")
             .permitAll()
-            .requestMatchers("/api/v1/admin").hasAnyAuthority(Role.ADMIN.name())
-            .requestMatchers("/api/v1/user").hasAnyAuthority(Role.USER.name())
+            .requestMatchers("/api/v1/user/forAdmin",
+                    "/api/v1/books/getAllBooks",
+                    "/api/v1/books/getBookById/**",
+                    "/api/v1/books/available/**",
+                    "/api/v1/books/available/**",
+                    "/api/v1/books/updateBook/**",
+                    "/api/v1/books/addBook",
+                    "/api/v1/books/deleteBook/**"
+
+                ).hasAnyAuthority(Role.ADMIN.name())
+            .requestMatchers("/api/v1/user/forUser",
+                    "/api/v1/books/getAllBooks",
+                    "/api/v1/books/getBookById/**",
+                    "/api/v1/books/available/**",
+                    "/api/v1/books/library/**"
+                ).hasAnyAuthority(Role.USER.name())
             .anyRequest().authenticated())
 
             .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

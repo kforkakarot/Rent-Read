@@ -26,6 +26,8 @@ public class User implements UserDetails {
     private String lastName;
     private String password;
     private Role role;
+    private Long book1 = -1L;
+    private Long book2 = -1L;
 
 
     @Override

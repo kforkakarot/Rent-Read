@@ -1,7 +1,9 @@
 package com.practice.Rentread;
 
+import com.practice.Rentread.Entities.Book;
 import com.practice.Rentread.Entities.Role;
 import com.practice.Rentread.Entities.User;
+import com.practice.Rentread.Repository.BookRepository;
 import com.practice.Rentread.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -14,6 +16,9 @@ public class RentreadApplication implements CommandLineRunner {
 
 	@Autowired
 	private UserRepository userRepository;
+
+	@Autowired
+	private BookRepository bookRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(RentreadApplication.class, args);
@@ -31,6 +36,13 @@ public class RentreadApplication implements CommandLineRunner {
 			user.setPassword(new BCryptPasswordEncoder().encode("admin"));
 			userRepository.save(user);
 		}
+
+		Book book = new Book();
+		book.setAvailabilityStatus(true);
+		book.setTitle("Book 1");
+		book.setGenre("action");
+		book.setAuthor("Arthur");
+		bookRepository.save(book);
 	}
 
 }
