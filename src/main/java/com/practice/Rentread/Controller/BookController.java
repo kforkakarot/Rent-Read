@@ -1,6 +1,7 @@
 package com.practice.Rentread.Controller;
 
 import com.practice.Rentread.Entities.Book;
+import com.practice.Rentread.Entities.Email;
 import com.practice.Rentread.Exceptions.BookNotAvailableException;
 import com.practice.Rentread.Exceptions.BookNotFoundException;
 import com.practice.Rentread.Exceptions.UserRentCapacityFullException;
@@ -82,9 +83,9 @@ public class BookController {
     }
 
     @PostMapping("/library/{bookId}/return")
-    public ResponseEntity<?> returnBook(@PathVariable Long bookId, @RequestParam String email){
+    public ResponseEntity<?> returnBook(@PathVariable Long bookId, @RequestBody Email email){
         try{
-            bookService.returnBook(bookId, email);
+            bookService.returnBook(bookId, email.getEmail());
             return new ResponseEntity(new SuccessMessage("Book returned SuccessFully"), HttpStatus.OK);
         }catch(UsernameNotFoundException e){
             log.error(e.getMessage());
@@ -99,9 +100,9 @@ public class BookController {
     }
 
         @PostMapping("/library/{bookId}/rent")
-    public ResponseEntity<?> rentBook(@PathVariable Long bookId, @RequestParam String email){
+    public ResponseEntity<?> rentBook(@PathVariable Long bookId, @RequestBody Email email){
         try{
-            bookService.rentBook(bookId, email);
+            bookService.rentBook(bookId, email.getEmail());
             return new ResponseEntity( new SuccessMessage("Book rented successfully"), HttpStatus.OK);
 
         }catch(BookNotAvailableException e){
