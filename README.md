@@ -1,5 +1,5 @@
 # Rent-Read
-Backend for book rentals, implementing API for CRUD of books by admin, also the user can register and login and rent books. Basic Authn and Authz usnig spring security 
+Backend for book rentals, implementing API for CRUD of books by admin, also the user can register and login and rent books. JWT based Authn and Authz using spring security 
 
 #Setting Up java
 
@@ -9,6 +9,7 @@ Backend for book rentals, implementing API for CRUD of books by admin, also the 
 Refer to teh following document to install and setting up MYSQL on windows mac and linux
 
 https://dev.mysql.com/doc/mysql-getting-started/en/
+
 #Setting up the environment
 Configure the following lines into your application.properties file
 
