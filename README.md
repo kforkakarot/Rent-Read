@@ -1,6 +1,9 @@
 # Rent-Read
 Backend for book rentals, implementing API for CRUD of books by admin, also the user can register and login and rent books. JWT based Authn and Authz using spring security 
 
+Please check the Main application class to find default entities that get created when the application is started.
+I have disbaled to create the Admin role user since it does not seem secure
+
 #Setting Up java
 
 1)Refer to the below document for easy installation https://www3.cs.stonybrook.edu/~amione/CSE114_Course/materials/resources/InstallingJava17.pdf

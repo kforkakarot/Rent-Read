@@ -2,6 +2,7 @@ package com.practice.Rentread.Service;
 
 import com.practice.Rentread.Entities.Role;
 import com.practice.Rentread.Entities.User;
+import com.practice.Rentread.Exceptions.UserExistException;
 import com.practice.Rentread.Repository.UserRepository;
 import com.practice.Rentread.dto.JwtAuthenticationResponse;
 import com.practice.Rentread.dto.SignInRequest;
@@ -26,8 +27,8 @@ public class AuthenticationServiceImpl implements  AuthenticationService{
 
     private final JWTService jwtService;
 
-    public User signUp(SignUpRequest signUpRequest){
-
+    public User signUp(SignUpRequest signUpRequest) throws UserExistException{
+        if(userRepository.findByEmail(signUpRequest.getEmail()).isPresent()) throw new UserExistException("Email Already Exist");
         User user = new User();
 
         user.setFirstName(signUpRequest.getFirstname());
